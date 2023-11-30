@@ -37,33 +37,106 @@ Answer each of the following questions for this schema...
 
 Does the order of table declarations above matter?
 
+### Ans
+
+Yes.
+
 ## Q2
 
 A new government initiative to get more young people into work cuts the salary levels of all workers under 25 by 20%. Write an SQL statement to implement this policy change.
+
+### Ans
+
+```sql
+update employees
+set salary = salary * 0.8
+where age < 25;
+```
 
 ## Q3
 
 The company has several years of growth and high profits, and considers that the Sales department is primarily responsible for this. Write an SQL statement to give all employees in the Sales department a 10% pay rise.
 
+### Ans
+
+```sql
+update employees
+set employees.salary = employees.salary * 1.1
+from employees
+inner join worksin on worksin.eid = employees.eid
+inner join departments on worksin.did = departments.did
+where departments.dname = 'sales';
+```
+
 ## Q4
 
 Add a constraint to the CREATE TABLE statements above to ensure that every department must have a manager.
+
+### Ans
+
+```sql
+create table Departments (
+      did     integer,
+      dname   text,
+      budget  real,
+      manager integer not null,
+      primary key (did)
+      foreign key (manager) references Employees(eid),
+);
+```
 
 ## Q5
 
 Add a constraint to the CREATE TABLE statements above to ensure that no-one is paid less than the minimum wage of $15,000.
 
+### Ans
+
+```sql
+create table Employees (
+      eid     integer,
+      ename   text,
+      age     integer,
+      salary  real check (salary >= 15000),
+      primary key (eid)
+);
+```
+
 ## Q6
 
 Add a constraint to the CREATE TABLE statements above to ensure that no employee can be committed for more than 100% of his/her time. Note that the SQL standard allows queries to be used in constraints, even though DBMSs don't implement this (for performance reasons).
+
+### Ans
+
+```sql
+
+```
 
 ## Q7
 
 Add a constraint to the CREATE TABLE statements above to ensure that a manager works 100% of the time in the department that he/she manages. Note that the SQL standard allows queries to be used in constraints, even though DBMSs don't implement this (for performance reasons).
 
+### Ans
+
+```sql
+
+```
+
 ## Q8
 
 When an employee is removed from the database, it makes sense to also delete all of the records that show which departments he/she works for. Modify the CREATE TABLE statements above to ensure that this occurs.
+
+### Ans
+
+```sql
+create table WorksIn (
+      eid integer,
+      did integer,
+      percent real,
+      primary key (eid, did),
+      foreign key (eid) references Employees(eid) on delete cascade,
+      foreign key (did) references Departments(did),
+);
+```
 
 ## Q9
 
