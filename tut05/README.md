@@ -1,4 +1,4 @@
-# Week05 Tutorial -  Stored Functions in SQL and PLpgSQL
+# Week05 Tutorial - Stored Functions in SQL and PLpgSQL
 
 ## Q1
 
