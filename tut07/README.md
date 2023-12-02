@@ -230,4 +230,41 @@ The two PostgreSQL builtin functions user() and now() will provide the values th
 
 ### Ans
 
+```sql
+create trigger Timestamp() before insert or update on Emp
+for each row execute procedure Timestamp();
 
+create function Timestamp() returns trigger
+as $$
+begin
+  new.user := user();
+  new.timestamp := now();
+end;
+$$ language plpgsql;
+```
+
+## Q10
+
+Consider the following relational schema:
+
+```sql
+Enrolment(course:char(8), sid:integer, mark:integer)
+Course(code:char(8), lic:text, quota:integer, numStudes:integer);
+```
+
+Define triggers which keep the numStudes field in the Course table consistent with the number of enrolment records for that course in the Enrolment table, and also ensure that new enrolment records are rejected if they would cause the quota to be exceeded.
+
+### Ans
+
+```sql
+create trigger EnrolmentCheck() before insert or update on Course
+for each row execute procedure Timestamp();
+
+create function EnrolmentCheck() returns trigger
+as $$
+begin
+  new.user := user();
+  new.timestamp := now();
+end;
+$$ language plpgsql;
+```
