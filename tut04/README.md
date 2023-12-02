@@ -10,24 +10,24 @@ Based on the ER design and the above considerations, here is a relational schema
 
 ```sql
 create table Employees (
-      eid     integer,
-      ename   text,
-      age     integer,
-      salary  real,
-      primary key (eid)
+    eid     integer,
+    ename   text,
+    age     integer,
+    salary  real,
+    primary key (eid)
 );
 create table Departments (
-      did     integer,
-      dname   text,
-      budget  real,
-      manager integer references Employees(eid),
-      primary key (did)
+    did     integer,
+    dname   text,
+    budget  real,
+    manager integer references Employees(eid),
+    primary key (did)
 );
 create table WorksIn (
-      eid     integer references Employees(eid),
-      did     integer references Departments(did),
-      percent real,
-      primary key (eid,did)
+    eid     integer references Employees(eid),
+    did     integer references Departments(did),
+    percent real,
+    primary key (eid,did)
 );
 ```
 
@@ -129,12 +129,12 @@ When an employee is removed from the database, it makes sense to also delete all
 
 ```sql
 create table WorksIn (
-      eid integer,
-      did integer,
-      percent real,
-      primary key (eid, did),
-      foreign key (eid) references Employees(eid) on delete cascade,
-      foreign key (did) references Departments(did),
+    eid integer,
+    did integer,
+    percent real,
+    primary key (eid, did),
+    foreign key (eid) references Employees(eid) on delete cascade,
+    foreign key (did) references Departments(did),
 );
 ```
 
@@ -184,20 +184,20 @@ Based on the ER design and the above considerations, here is a relational schema
 
 ```sql
 create table Suppliers (
-      sid     integer primary key,
-      sname   text,
-      address text
+    sid     integer primary key,
+    sname   text,
+    address text
 );
 create table Parts (
-      pid     integer primary key,
-      pname   text,
-      colour  text
+    pid     integer primary key,
+    pname   text,
+    colour  text
 );
 create table Catalog (
-      sid     integer references Suppliers(sid),
-      pid     integer references Parts(pid),
-      cost    real,
-      primary key (sid,pid)
+    sid     integer references Suppliers(sid),
+    pid     integer references Parts(pid),
+    cost    real,
+    primary key (sid,pid)
 );
 ```
 

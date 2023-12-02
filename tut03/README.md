@@ -54,29 +54,29 @@ A:
 ```sql
 -- Prefer
 create table R (
-  id integer,
-  name text,
-  address text,
-  d_o_b date,
-  primary key (id)
+    id integer,
+    name text,
+    address text,
+    d_o_b date,
+    primary key (id)
 );
 
 -- Alt
 create table R (
-  id integer primary key,
-  name text,
-  address text,
-  d_o_b date
+    id integer primary key,
+    name text,
+    address text,
+    d_o_b date
 );
 ```
 
 B:
 ```sql
 create table R (
-  name text,
-  address text,
-  d_o_b date,
-  primary key (name, address)
+    name text,
+    address text,
+    d_o_b date,
+    primary key (name, address)
 )
 ```
 
@@ -101,13 +101,13 @@ z integer unique
 
 -- Between tables
 create table R (
-  x integer primary key,
-  y float,
+    x integer primary key,
+    y float,
 );
 
 create table S (
-  a integer primary key,
-  b integer references R(x) -- b is a foreign key on R.x
+    a integer primary key,
+    b integer references R(x) -- b is a foreign key on R.x
 );
 ```
 
@@ -117,10 +117,10 @@ What is the difference between the following two ways to define a primary key?
 
 ```sql
 create table R (                    create table R (
-   a integer primary key,              a integer,
-   b integer,                          b integer,
-   ...                                 ...
-);                                     primary key (a)
+    a integer primary key,              a integer,
+    b integer,                          b integer,
+    ...                                 ...
+);                                      primary key (a)
                                     );
 ```
 
@@ -149,11 +149,11 @@ In many real PostgreSQL schemas, you will see definitions like
 
 ```sql
 create table R (
-   id    serial,
-   name  text,
-   d_o_b date,
-   ...
-   primary key (id)
+    id    serial,
+    name  text,
+    d_o_b date,
+    ...
+    primary key (id)
 );
 ```
 
@@ -165,13 +165,13 @@ create table R (
 
 - Serial declaration generates sequence of consecutive and unique integer values.
 - To make use of `id`:
-  ```sql
-  insert into R(name, d_o_b) values ('John', '1972-02-28') returning id;
-  ```
+    ```sql
+    insert into R(name, d_o_b) values ('John', '1972-02-28') returning id;
+    ```
 - To ref `R.id` as foreign key:
-  ```sql
-  fk integer references R(id) -- fk is a foreign key on R.id
-  ```
+    ```sql
+    fk integer references R(id) -- fk is a foreign key on R.id
+    ```
 
 ## Q10
 
@@ -185,10 +185,10 @@ Give reasons for all choices of domain types.
 
 ```sql
 create table CompanyListings {
-  name char(4),
-  netWorth float(6, 2),
-  sharePrice float(20, 2),
-  primary key (name)
+    name char(4),
+    netWorth float(6, 2),
+    sharePrice float(20, 2),
+    primary key (name)
 };
 ```
 
@@ -204,14 +204,14 @@ Give reasons for all choices of domain types.
 
 ```sql
 create table Persons {
-  firstName varchar(30),
-  familyName varchar(30),
-  initial char(1),
-  streetNumber integer,
-  streetName varchar(40),
-  suburb varchar(40),
-  birthday date,
-  primary key (familyName, firstName, initial)
+    firstName varchar(30),
+    familyName varchar(30),
+    initial char(1),
+    streetNumber integer,
+    streetName varchar(40),
+    suburb varchar(40),
+    birthday date,
+    primary key (familyName, firstName, initial)
 };
 ```
 
@@ -239,23 +239,23 @@ Which elements of the ER design do not appear in the relational version?
 
 ```sql
 create table Suppliers {
-  name text,
-  city text,
-  primary key (name)
+    name text,
+    city text,
+    primary key (name)
 };
 
 create table Parts {
-  number integer,
-  colour text,
-  primary key (number)
+    number integer,
+    colour text,
+    primary key (number)
 };
 
 create table Supplies {
-  quantity integer,
-  supplier text,
-  part integer,
-  foreign key (supplier) references Suppliers(name),
-  foreign key (part) references Parts(number)
+    quantity integer,
+    supplier text,
+    part integer,
+    foreign key (supplier) references Suppliers(name),
+    foreign key (part) references Parts(number)
 }
 ```
 
@@ -273,41 +273,41 @@ Which elements of the ER design do not appear in the relational version?
 
 ```sql
 create table Cars {
-  regoID integer,
-  model text,
-  year integer(4),
-  primary key (regoID)
+    regoID integer,
+    model text,
+    year integer(4),
+    primary key (regoID)
 };
 
 create table Persons {
-  licenseID integer,
-  name text,
-  address text,
-  primary key (licenseID)
+    licenseID integer,
+    name text,
+    address text,
+    primary key (licenseID)
 };
 
 create table Owns {
-  rego integer,
-  license integer,
-  foreign key (rego) references Cars(regoID)
-  foreign key (license) references Persons(licenseID)
+    rego integer,
+    license integer,
+    foreign key (rego) references Cars(regoID)
+    foreign key (license) references Persons(licenseID)
 };
 
 create table Involvements {
-  rego integer,
-  license integer,
-  report integer,
-  damage text,
-  foreign key (rego) references Cars(regoID)
-  foreign key (license) references Persons(licenseID)
-  foreign key (report) references Accidents(reportID)
+    rego integer,
+    license integer,
+    report integer,
+    damage text,
+    foreign key (rego) references Cars(regoID)
+    foreign key (license) references Persons(licenseID)
+    foreign key (report) references Accidents(reportID)
 };
 
 create table Accidents {
-  reportID integer,
-  date date,
-  location text,
-  primary key (reportID)
+    reportID integer,
+    date date,
+    location text,
+    primary key (reportID)
 };
 ```
 
