@@ -315,7 +315,7 @@ create table Accidents {
 
 ## Q15
 
-[Based on GUW 2.1.3] Convert the following ER design into a relational data model expressed first as a box-and-arrow diagram and then as a sequence of statements in the SQL data definition language:
+Convert the following ER design into a relational data model expressed first as a box-and-arrow diagram and then as a sequence of statements in the SQL data definition language:
 
 ![](q15.png)
 
@@ -323,3 +323,4 @@ Which elements of the ER design do not appear in the relational version?
 
 ## Ans
 
+![](q15.drawio.png)
