@@ -64,6 +64,8 @@ Process for determining which FDs do not hold:
 1. Find all other tuples with the same pivot.
 1. If any columns in the tuple varies, then the pivot and the target column cannot form a functional dependency for their respective attributes.
 1. Repeat above steps but add an additional attribute/column to pivot.
+
+Keys need to map unique values
 </blockquote>
 
 ## Q2
@@ -127,7 +129,7 @@ Consider the relation R(A,B,C,D,E) and the set set of functional dependencies F 
 - Is R 3NF?
     - Yes because RHS of all FDs (i.e. B,E,A) are elements of candidate keys.
 - Is R BCNF?
-    - No because LHS of any of FDs (i.e. A, BC, ED) contains candidate keys.
+    - No because LHS of any of FDs (i.e. A, BC, ED) does not contains candidate keys.
 
 Note that max number of candidate keys is `2^(num_attr - num_fd)`.
 
@@ -336,7 +338,7 @@ Note:
 - FavouritePlayers has no non-trivial FDs
 - FavouriteTeams has no non-trivial FDs
 
-Candidate keys are A, C, {E} by inspection.
+Candidate keys are {A, C, E} by inspection.
 
 Is BCNF because all LHS of {A->B, C->D, E->F} contains a candidate key set.
 
@@ -374,7 +376,7 @@ FDs:
 Note:
 - Source has no non-trivial FDs
 
-Candidate keys are A, C, F, I, N by inspection.
+Candidate keys are {A, C, F, I, N} by inspection.
 
 Is BCNF because all LHS of FDs contain a candidate key set.
 
@@ -487,6 +489,7 @@ F   =   { B → A,  D → A,  AB → D }
 ### Ans
 
 AB->D = AB->A = B->A
+
 B->A, AB->D = B->D
 
 1. Consider canonical cover:

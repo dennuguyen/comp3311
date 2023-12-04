@@ -282,7 +282,7 @@ A: T3->T1
 B: T2->T3
 Y:
 Z:
-Therefore: T2->T3 ->T1
+Therefore: T2->T3->T1
 ```
 
 ## Q12
@@ -363,7 +363,7 @@ Process for determining conflict-serialisability:
 
 1. Draw precedence graph
     - Don't draw edge if it's read followed by read operation
-1. If there are cycles then is conflict-serialisable
+1. If there are cycles then is not conflict-serialisable
 </blockquote>
 
 <blockquote>
