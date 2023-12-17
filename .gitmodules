@@ -1,0 +1,6 @@
+[submodule "ass1"]
+	path = ass1
+	url = git@github.com:dennuguyen/comp3311-ass1.git
+[submodule "ass2"]
+	path = ass2
+	url = git@github.com:dennuguyen/comp3311-ass2.git
